@@ -39,6 +39,10 @@ public class SignUpAtivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                if (!validatePassword() | !validateUsername() | !validateEmail() | !validateName()) {
+                    Toast.makeText(SignUpAtivity.this, "Preencha todos os campos", Toast.LENGTH_LONG).show();
+                } else {
+
                 //Inicializar o firebase
                 firebaseDatabase = FirebaseDatabase.getInstance();
                 databaseReference = firebaseDatabase.getReference("Users");
@@ -56,6 +60,7 @@ public class SignUpAtivity extends AppCompatActivity {
                 Intent intent = new Intent(SignUpAtivity.this, LoginActivity.class);
                 startActivity(intent);
                 // finish();
+            }
 
             }
         });
@@ -68,5 +73,50 @@ public class SignUpAtivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public Boolean validateName(){
+        String val = signUpName.getText().toString();
+        if(val.isEmpty()){
+            signUpName.setError("Username cannot be empty");
+            //Toast.makeText(SignUpAtivity.this, "Preencha o campo Nome", Toast.LENGTH_LONG).show();
+            return false;
+        }else{
+            signUpName.setError(null);
+            return true;
+        }
+    }
+    public Boolean validateEmail(){
+        String val = signUpEmail.getText().toString();
+        if(val.isEmpty()){
+            signUpEmail.setError("Username cannot be empty");
+           // Toast.makeText(SignUpAtivity.this, "Preencha o campo Email", Toast.LENGTH_LONG).show();
+            return false;
+        }else{
+            signUpEmail.setError(null);
+            return true;
+        }
+    }
+    public Boolean validateUsername(){
+        String val = signUpUsername.getText().toString();
+        if(val.isEmpty()){
+            signUpUsername.setError("Username cannot be empty");
+         //   Toast.makeText(SignUpAtivity.this, "Preencha o campo Usuario", Toast.LENGTH_LONG).show();
+            return false;
+        }else{
+            signUpUsername.setError(null);
+            return true;
+        }
+    }
+    public Boolean validatePassword(){
+        String val = signUpPassword.getText().toString();
+        if(val.isEmpty()){
+            signUpPassword.setError("Username cannot be empty");
+         //   Toast.makeText(SignUpAtivity.this, "Preencha o campo Password", Toast.LENGTH_LONG).show();
+            return false;
+        }else{
+            signUpPassword.setError(null);
+            return true;
+        }
     }
 }
