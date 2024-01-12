@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -85,8 +86,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void checkUser(){
-        String username = loginUsername.getText().toString();
-        String password = loginPassword.getText().toString();
+        String username = loginUsername.getText().toString().trim();
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users");
         Query checkUserDatabase = databaseReference.orderByChild("username").equalTo(username);
@@ -94,32 +94,53 @@ public class LoginActivity extends AppCompatActivity {
         checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Log.d("CheckUser", "Snapshot exists: " + snapshot.exists());
 
                 if(snapshot.exists()){
+                    String password = loginPassword.getText().toString().trim();
                     loginUsername.setError(null);
-                    String passwordForDB  = snapshot.child(username).child("password").getValue(String.class);
 
-                    if(!Objects.equals(passwordForDB, username)){
+                    String passwordFromDB = snapshot.child(username).child("password").getValue(String.class);
+                    String nameFromDB = snapshot.child(username).child("name").getValue(String.class);
+                    String emailFromDB = snapshot.child(username).child("email").getValue(String.class);
+                    String usernameFromDB = snapshot.child(username).child("username").getValue(String.class);
+
+                    Log.d("CheckUser", "Password for DB: " + passwordFromDB);
+
+                    //if(Objects.equals(passwordForDB, password)){
+                    if(passwordFromDB.equals(password)){
+                        Log.d("CheckUser", "Password match. Logging in...");
                         loginUsername.setError(null);
                         Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
+
+                        intent.putExtra("name", nameFromDB);
+                        intent.putExtra("email", emailFromDB);
+                        intent.putExtra("username", usernameFromDB);
+                        intent.putExtra("password", passwordFromDB);
+
                         startActivity(intent);
                         finish();
-                    } else{
-                        loginPassword.setError("Invalid credentials");
-                        Toast.makeText(LoginActivity.this, "Senha invalida", Toast.LENGTH_LONG).show();
+                    } else {
+                        Log.d("CheckUser", "Invalid credentials");
+                        loginPassword.setError("Credenciais inválidas");
+                        Toast.makeText(LoginActivity.this, "Senha inválida", Toast.LENGTH_LONG).show();
                         loginPassword.requestFocus();
                     }
-                }else{
-                    Toast.makeText(LoginActivity.this, "User invalida", Toast.LENGTH_LONG).show();
-                    loginUsername.setError("User does not exist");
+                } else {
+                    Log.d("CheckUser", "User does not exist");
+                    Toast.makeText(LoginActivity.this, "Usuário inválido", Toast.LENGTH_LONG).show();
+                    loginUsername.setError("Usuário não existe");
                     loginUsername.requestFocus();
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.e("CheckUser", "Database error: " + error.getMessage());
+                // Adicione um log ou tratamento de erro adequado aqui, se necessário
             }
         });
     }
+
+
 }

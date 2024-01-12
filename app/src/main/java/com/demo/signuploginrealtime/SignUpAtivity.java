@@ -55,7 +55,7 @@ public class SignUpAtivity extends AppCompatActivity {
                 HelperClass object = new HelperClass(name, email, password, username);
 
                 //Enviar para o firebase
-                databaseReference.child(name).setValue(object);
+                databaseReference.child(username).setValue(object);
                 Toast.makeText(SignUpAtivity.this, "You have been signui successful", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(SignUpAtivity.this, LoginActivity.class);
                 startActivity(intent);
