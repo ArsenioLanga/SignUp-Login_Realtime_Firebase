@@ -101,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     if(!Objects.equals(passwordForDB, username)){
                         loginUsername.setError(null);
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
                         startActivity(intent);
                         finish();
                     } else{

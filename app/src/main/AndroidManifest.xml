@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ProfileActivity"
             android:exported="false"></activity>
     </application>
 
