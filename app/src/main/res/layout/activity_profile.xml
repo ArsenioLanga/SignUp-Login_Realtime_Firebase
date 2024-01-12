@@ -154,11 +154,165 @@
             </LinearLayout>
 
         </LinearLayout>
-        
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/name"
+                android:layout_weight="1"
+                android:text="Name"
+                android:textStyle="bold"
+                android:textColor="@color/lavender"
+                android:textSize="18sp"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/profileName"
+                android:layout_weight="1"
+                android:text="name"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/gray"
+                android:textSize="18sp"/>
+
+        </LinearLayout>
+
+        <!-- Adicionar linha horizontal -->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="10dp"
+            android:alpha="0.5"
+            android:background="@color/lavender"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:padding="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/email"
+                android:layout_weight="1"
+                android:text="Email"
+                android:textStyle="bold"
+                android:textColor="@color/lavender"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/profileEmail"
+                android:layout_weight="1"
+                android:text="email"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/gray"
+                android:textSize="18sp"/>
+
+        </LinearLayout>
+        <!-- Adicionar linha horizontal -->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="10dp"
+            android:alpha="0.5"
+            android:background="@color/lavender"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:padding="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/username"
+                android:layout_weight="1"
+                android:text="Username"
+                android:textStyle="bold"
+                android:textColor="@color/lavender"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/profileUsername"
+                android:layout_weight="1"
+                android:text="username"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/gray"
+                android:textSize="18sp"/>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="10dp"
+            android:alpha="0.5"
+            android:background="@color/lavender"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:padding="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/password"
+                android:layout_weight="1"
+                android:text="Password"
+                android:textStyle="bold"
+                android:textColor="@color/lavender"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/profilePassword"
+                android:layout_weight="1"
+                android:text="password"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/gray"
+                android:textSize="18sp"/>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="10dp"
+            android:alpha="0.5"
+            android:background="@color/lavender"/>
     </LinearLayout>
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:id="@+id/editButton"
+        android:gravity="center"
+        android:text="Edit Profile"
+        android:textSize="18sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"/>  
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
