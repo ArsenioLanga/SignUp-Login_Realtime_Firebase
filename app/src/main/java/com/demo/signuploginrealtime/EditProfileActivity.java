@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class EditProfileActivity extends AppCompatActivity {
 
@@ -24,7 +26,7 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        reference = FirebaseDatabase.getInstance().getReference("users");
+        reference = FirebaseDatabase.getInstance().getReference("Users");
 
         editName = findViewById(R.id.editName);
         editEmail = findViewById(R.id.editEmail);
@@ -65,7 +67,6 @@ public class EditProfileActivity extends AppCompatActivity {
             return false;
         }
     }
-
 
     private boolean isPasswordChanged() {
         if (!passwordUser.equals(editPassword.getText().toString())){

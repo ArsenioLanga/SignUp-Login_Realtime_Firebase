@@ -7,9 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,6 +44,7 @@ public class ProfileActivity extends AppCompatActivity {
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 passUserData();
             }
         });
@@ -66,14 +69,22 @@ public class ProfileActivity extends AppCompatActivity {
     public void passUserData(){
         String userUsername = profileUsername.getText().toString().trim();
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
-        Query checkUserDatabase = reference.orderByChild("username").equalTo(userUsername);
+        //DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
+       /// Query checkUserDatabase = reference.orderByChild("username").equalTo(userUsername);
 
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        Query checkUserDatabase = databaseReference.orderByChild("username").equalTo(userUsername);
         checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                Log.d("CheckUser", "Snapshot exists: " + snapshot.exists());
+                Log.d("CheckUser", "Password for DB: " + userUsername);
+
                 if (snapshot.exists()){
+
+                    Toast.makeText(ProfileActivity.this, "Dentro", Toast.LENGTH_LONG).show();
 
                     String nameFromDB = snapshot.child(userUsername).child("name").getValue(String.class);
                     String emailFromDB = snapshot.child(userUsername).child("email").getValue(String.class);
@@ -90,6 +101,8 @@ public class ProfileActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
 
+                }else{
+                    Toast.makeText(ProfileActivity.this, "Fora", Toast.LENGTH_LONG).show();
                 }
             }
 
